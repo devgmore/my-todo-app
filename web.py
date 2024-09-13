@@ -3,20 +3,23 @@ import functions
 
 todos = functions.get_todos()
 
+# st.set_page_config(layout='wide')
+
 # call back function
 def add_todo():
-    todo = st.session_state["new_todo"] + "\n"
-    todos.append(todo)
+    todo_local = st.session_state["new_todo"] + "\n"
+    todos.append(todo_local)
     functions.write_todos(todos)
 
 
 # streamlit run web.py / once done, just refresh the web page for adds or edits
 # everytime the web page is refresh, pyton script is run
 
-# Web Components
+# Web Components - order matters
 st.title("My Todo App")
 st.subheader("This is my todo app.")
-st.write("This app is to increase your productivity.")
+st.write("This app is to increase your <b>productivity</b>.",
+         unsafe_allow_html=True)
 
 for index, todo in enumerate(todos):
     checkbox = st.checkbox(todo, key=todo)
